@@ -1,8 +1,1 @@
 
-/*pour l'affichage sur mobile */
-@media screen and (max-width: 576px){
-    body{
-        display: none;
-        background-color: red;
-    }
-}

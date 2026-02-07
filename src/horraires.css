@@ -1,0 +1,208 @@
+/* ========================================
+   SECTION 3 : LIGNES & ITINÉRAIRES
+   ======================================== */
+
+.lignes-section {
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.lignes-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(13, 110, 253, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Titre de section */
+.section-title {
+    position: relative;
+    display: inline-block;
+    color: #1a1a2e;
+    letter-spacing: -0.02em;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #0d6efd, #764ba2);
+    border-radius: 2px;
+}
+
+/* ========================================
+   CARTES DE ROUTES (EFFET HOVER MAGIC)
+   ======================================== */
+
+.routes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.route-card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    border-left: 5px solid #e0e0e0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Effet de remplissage au survol */
+.route-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--card-color, #0d6efd), transparent);
+    opacity: 0.1;
+    transition: width 0.4s ease;
+    z-index: 0;
+    border-radius: 16px;
+}
+
+.route-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-left-width: 5px;
+    border-left-color: var(--card-color, #0d6efd);
+}
+
+.route-card:hover::before {
+    width: 100%;
+}
+
+/* Animation des elements internes au hover */
+.route-card:hover .route-number {
+    transform: scale(1.1);
+}
+
+.route-card:hover .route-info h5 {
+    color: var(--card-color, #0d6efd);
+}
+
+/* Numéro de ligne */
+.route-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    width: 60px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Info route */
+.route-info {
+    position: relative;
+    z-index: 2;
+}
+
+.route-info h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+    color: #1a1a2e;
+}
+
+.route-info small {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.route-info small i {
+    color: #6c757d;
+}
+
+/* Badges de statut */
+.badge {
+    font-weight: 600;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Colors dynamiques via data-attribute */
+.route-card[data-color="#0d6efd"] { --card-color: #0d6efd; }
+.route-card[data-color="#9b59b6"] { --card-color: #9b59b6; }
+.route-card[data-color="#e74c3c"] { --card-color: #e74c3c; }
+.route-card[data-color="#f39c12"] { --card-color: #f39c12; }
+
+/* ========================================
+   ANIMATIONS ENTRÉE
+   ======================================== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 991px) {
+    .lignes-section {
+        padding: 3rem 0;
+    }
+    
+    .route-card {
+        padding: 1.25rem;
+    }
+    
+    .route-number {
+        font-size: 2rem;
+        width: 50px;
+    }
+    
+    /* Sur mobile, ne pas translater trop */
+    .route-card:hover {
+        transform: translateX(5px);
+    }
+}
+
+@media (max-width: 576px) {
+    .route-card .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .route-card .badge {
+        margin-top: 1rem;
+        align-self: flex-start;
+    }
+    
+    .route-info small {
+        font-size: 0.8rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}

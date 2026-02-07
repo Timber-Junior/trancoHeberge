@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRANSCO TM</title>
+ 
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="avisClient.css">
+  <link rel="stylesheet" href="heroSection.css">
+  <link rel="stylesheet" href="horraires.css">
+  <link rel="stylesheet" href="carteSectTarif.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="cardSection.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+ 
+<body class="body">
+  
+  <!-- Navbar -->
+  <header>
+  </header>
+  <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom" id="mainNav">
+    <div class="container-fluid px-4">
+        
+        <!-- Logo (début) -->
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark" href="#">
+            <img src="../assets/sectionPhoto.png" alt="Logo" height="40">
+            <span class="d-none d-sm-inline fs-4"></span>
+        </a>
+
+        <!-- Bouton Hamburger -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenu -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            
+            <!-- Liens (milieu - centrés avec mx-auto) -->
+            <ul class="navbar-nav mx-auto gap-lg-2">
+                <li class="nav-item">
+                    <a class="nav-link fw-medium px-3 py-2 rounded-3" href="#accueil">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium px-3 py-2 rounded-3" href="#lignes">Lignes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium px-3 py-2 rounded-3" href="#carte">Cartes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium px-3 py-2 rounded-3" href="#contact">Contact</a>
+                </li>
+            </ul>
+
+
+            <!-- Bouton (fin) -->
+            <div class="mt-3 mt-lg-0">
+                <a href="connexionpremier.html">
+                  <button class="btn btn-dark btn-sm px-5 py-3 rounded-pill">
+                    Commencer <i class="bi bi-arrow-right"></i>
+                </button>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</nav>
+
+<!-- Spacer pour compenser la navbar sticky -->
+<div class="mb-5" style="height: 1px;"></div>
+
+
+
+  <!-- Hero Section -->
+<!-- Hero Section -->
+<section id="accueil" class="hero-split">
+  <div class="container-fluid h-100">
+    <div class="row h-100 g-0">
+      
+      <!-- Div 1 : Texte centré -->
+      <div class="col-lg-6 d-flex align-items-center justify-content-center bg-light">
+  <div class="hero-content text-center px-5 py-5">
+    <!-- Logo centré -->
+    <img src="../assets/sectionPhoto.png" alt="Logo Transco Kinshasa" height="200" width="300" class="mb-4">
+
+    <!-- Texte principal -->
+    <p class="fs-3 lead mb-3 text-secondary px-lg-5">
+      Avec Transco Kinshasa, notre flotte moderne de bus est pensée pour répondre à vos besoins. 
+      Un transport fiable et accessible pour tous vos déplacements.
+    </p>
+
+    <!-- Bouton -->
+    <a href="dashboard.html" class="btn btn-dark btn-lg px-5 py-3 rounded-pill">
+      Réservez votre ticket <i class="bi bi-arrow-right ms-2"></i>
+    </a>
+  </div>
+</div>
+
+
+      <!-- Div 2 : Image background pleine taille -->
+      <div class="col-lg-6 hero-image-side position-relative">
+        <!-- L'image est en background CSS -->
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- section des horraires -->
+
+<section id="lignes" class="lignes-section py-5">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            
+            <!-- Colonne gauche : Texte -->
+            <div class="col-lg-4 fade-in">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill text-uppercase fw-bold small">
+                    Itinéraires
+                </span>
+                <h2 class="display-5 fw-bold mb-4 section-title">Nos Lignes Populaires</h2>
+                <p class="text-muted mb-4 lead">
+                    Retrouvez les trajets les plus empruntés avec des fréquences optimisées et des correspondances fluides.
+                </p>
+                
+                <div class="d-flex gap-2 mb-4 flex-wrap">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                        <i class="bi bi-wifi me-1"></i> WiFi
+                    </span>
+                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2">
+                        <i class="bi bi-snow me-1"></i> Clim
+                    </span>
+                    <span class="badge bg-info bg-opacity-10 text-info px-3 py-2">
+                        <i class="bi bi-usb-symbol me-1"></i> USB
+                    </span>
+                </div>
+                
+                <button class="btn btn-outline-primary rounded-pill px-4 fw-semibold">
+                    <i class="bi bi-map me-2"></i>Télécharger la carte
+                </button>
+            </div>
+
+            <!-- Colonne droite : Liste des routes -->
+            <div class="col-lg-8">
+                <div class="routes-list">
+                    
+                    <!-- Route 1 -->
+                    <div class="route-card" data-color="#0d6efd">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #0d6efd;">42Z</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Zando</h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 10-30 min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 12 arrêts
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary-emphasis bg-opacity-10 text-primary-emphasis border border-primary-emphasis border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-check-circle-fill me-1"></i>Populaire
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Route 2 -->
+                    <div class="route-card" data-color="#9b59b6">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #9b59b6;">H15</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Huillerie</h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 15 min | 
+                                        <i class="bi bi-lightning-charge me-1"></i> Direct
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-exclamation-triangle-fill me-1"></i>problemes de routes
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Route 3 -->
+                    <div class="route-card" data-color="#e74c3c">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #e74c3c;">P07</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Pascal </h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 10 min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 7 stations
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary-emphasis bg-opacity-10 text-primary-emphasis border border-primary-emphasis border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-check-circle-fill me-1"></i>Populaire
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Route 4 -->
+                    <div class="route-card" data-color="#f39c12">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #f39c12;">B13</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Unikin (campus)</h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 4 min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 7 stations
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-check-circle-fill me-1"></i>Ponctuel
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="route-card" data-color="#12f325">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #1221f3;">UP2</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">UPN </h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 15min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 7 stations
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-check-circle-fill me-1"></i>Ponctuel
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="route-card" data-color="#f39c12">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #f312f3;">L79</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Lemba Terminus</h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 4 min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 7 stations
+                                    </small>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-exclamation-triangle-fill me-1"></i>problemes de routes
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="route-card" data-color="#f39c12">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="route-number" style="color: #f39c12;">V08</div>
+                                <div class="route-info">
+                                    <h5 class="fw-bold mb-1">Victoire</h5>
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i> Fréquence: 4 min | 
+                                        <i class="bi bi-geo-alt me-1"></i> 7 stations
+                                    </small>
+                                </div>
+                            </div>
+                           <span class="badge bg-primary-emphasis bg-opacity-10 text-primary-emphasis border border-primary-emphasis border-opacity-20 px-3 py-2 rounded-pill">
+                                <i class="bi bi-check-circle-fill me-1"></i>Populaire
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Carte Kinshasa -->
+<!-- Section Carte Kinshasa - Layout Split Full -->
+ 
+<section id="carte" class="kinshasa-map-full">
+  <div class="row g-0 h-100">
+    
+    <!-- Côté Gauche : Carte Full -->
+    <div class="col-lg-6 map-col">
+      <div class="map-wrapper position-relative h-100">
+        
+        <!-- Fond carte -->
+        <div class="map-bg h-100 w-100 position-relative" style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #dbeafe 100%);">
+          
+          <!-- Fleuve Congo -->
+          <div class="fleuve position-absolute" style="left: 15%; top: 0; bottom: 0; width: 6px; background: linear-gradient(to bottom, #38bdf8, #0284c7); opacity: 0.4; border-radius: 3px;"></div>
+          
+          <!-- Routes principales SVG -->
+          <svg class="routes-overlay position-absolute w-100 h-100" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="0" y1="50" x2="100" y2="50" stroke="#ef4444" stroke-width="0.5" stroke-dasharray="2,1" opacity="0.5"/>
+            <line x1="30" y1="0" x2="30" y2="100" stroke="#f59e0b" stroke-width="0.5" stroke-dasharray="2,1" opacity="0.5"/>
+            <line x1="0" y1="80" x2="100" y2="20" stroke="#10b981" stroke-width="0.5" stroke-dasharray="2,1" opacity="0.5"/>
+          </svg>
+
+          <!-- Points d'arrêts (positionnés en % pour responsive) -->
+          <div class="stop-marker" style="top: 12%; left: 40%;" data-stop="gare">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-danger"></div>
+            <span class="marker-label">Gare Centrale</span>
+          </div>
+
+          <div class="stop-marker" style="top: 48%; left: 35%;" data-stop="boulvard">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-primary"></div>
+            <span class="marker-label">30 Juin</span>
+          </div>
+
+          <div class="stop-marker" style="top: 52%; left: 60%;" data-stop="nation">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-warning"></div>
+            <span class="marker-label">Echangeur</span>
+          </div>
+
+          <div class="stop-marker" style="top: 78%; left: 22%;" data-stop="victoire">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-success"></div>
+            <span class="marker-label">Victoire</span>
+          </div>
+
+          <div class="stop-marker" style="top: 28%; left: 65%;" data-stop="kintambo">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-info"></div>
+            <span class="marker-label">Kintambo</span>
+          </div>
+
+          <div class="stop-marker" style="top: 82%; left: 55%;" data-stop="ngaba">
+            <div class="marker-pulse"></div>
+            <div class="marker-dot bg-secondary"></div>
+            <span class="marker-label">Ngaba</span>
+          </div>
+
+          <!-- Bus animés -->
+          <div class="live-bus" style="top: 46%; left: 20%;">
+            <div class="bus-badge bg-white text-primary">
+              <i class="bi bi-bus-front-fill"></i>
+              <span>L1</span>
+            </div>
+          </div>
+          
+          <div class="live-bus" style="top: 74%; left: 38%; animation-delay: -4s;">
+            <div class="bus-badge bg-white text-success">
+              <i class="bi bi-bus-front-fill"></i>
+              <span>L5</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Overlay titre carte -->
+        <div class="map-header position-absolute top-0 start-0 p-4 z-3">
+          <span class="badge bg-dark bg-opacity-50 text-white backdrop-blur">
+            <i class="bi bi-geo-alt-fill me-2"></i>Carte interactive
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Côté Droite : Liste Arrêts Full -->
+    <div class="col-lg-6 stops-col">
+      <div class="stops-panel h-100 d-flex flex-column">
+        
+        <!-- Header fixe -->
+        <div class="stops-header p-4 border-bottom bg-white">
+          <span class="badge bg-primary bg-opacity-10 text-primary text-uppercase fw-bold px-3 py-2 rounded-pill mb-2">
+            Arrêts
+          </span>
+          <h2 class="display-6 fw-bold mb-0">Points populaires</h2>
+          <p class="text-muted mb-0 mt-2">Sélectionnez un arrêt pour voir les détails</p>
+        </div>
+
+        <!-- Liste scrollable -->
+        <div class="stops-list flex-grow-1 overflow-auto p-4">
+          
+          <div class="stop-item mb-3" data-target="gare">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-danger bg-opacity-10 text-danger rounded-3 flex-shrink-0">
+                <i class="bi bi-train-front fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Gare Centrale</h5>
+                <p class="mb-0 text-muted small">Ligne 1, 3, 8 • Terminus principal</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-success bg-opacity-10 text-success small">En service</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>5 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+          <div class="stop-item mb-3" data-target="boulvard">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-primary bg-opacity-10 text-primary rounded-3 flex-shrink-0">
+                <i class="bi bi-shop fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Boulevard 30 Juin</h5>
+                <p class="mb-0 text-muted small">Ligne 1, 2, 5 • Zone commerciale</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-success bg-opacity-10 text-success small">En service</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>2 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+          <div class="stop-item mb-3" data-target="nation">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-warning bg-opacity-10 text-warning rounded-3 flex-shrink-0">
+                <i class="bi bi-flag fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Echangeur</h5>
+                <p class="mb-0 text-muted small">Ligne 4, 7 site tourist</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-warning bg-opacity-10 text-warning small">Flux dense</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>8 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+          <div class="stop-item mb-3" data-target="victoire">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-success bg-opacity-10 text-success rounded-3 flex-shrink-0">
+                <i class="bi bi-circle-square fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Victoire (Rond-point)</h5>
+                <p class="mb-0 text-muted small">Ligne 5, 9, 12 • Carrefour majeur</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-success bg-opacity-10 text-success small">En service</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>3 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+          <div class="stop-item mb-3" data-target="kintambo">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-info bg-opacity-10 text-info rounded-3 flex-shrink-0">
+                <i class="bi bi-building fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Kintambo</h5>
+                <p class="mb-0 text-muted small">Ligne 3, 6 • Quartier résidentiel</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-success bg-opacity-10 text-success small">En service</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>12 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+          <div class="stop-item" data-target="ngaba">
+            <div class="stop-card-inner d-flex align-items-center gap-3 p-3 rounded-3 bg-light border border-2 border-transparent">
+              <div class="stop-icon bg-secondary bg-opacity-10 text-secondary rounded-3 flex-shrink-0">
+                <i class="bi bi-house-door fs-3"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1">Ngaba</h5>
+                <p class="mb-0 text-muted small">Ligne 8, 10 • Zone périphérique</p>
+                <div class="mt-2 d-flex gap-2">
+                  <span class="badge bg-secondary bg-opacity-10 text-secondary small">Planifié</span>
+                  <span class="badge bg-light text-dark small"><i class="bi bi-clock me-1"></i>15 min</span>
+                </div>
+              </div>
+              <i class="bi bi-chevron-right text-muted"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer fixe -->
+        <div class="stops-footer p-4 border-top bg-white">
+          <a href="#carte" class="btn btn-dark w-100 rounded-pill fw-bold py-3">
+            <i class="bi bi-map-fill me-2"></i>Voir la carte complète
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!--section avec des cartes -->
+<section id="actualites" class="news-section py-5">
+  <div class="container py-5">
+    
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary text-uppercase fw-bold px-3 py-2 rounded-pill mb-3">
+        Actualités
+      </span>
+      <h2 class="display-5 fw-bold section-title">Dernières Nouvelles</h2>
+    </div>
+
+    <!-- 4 Cards Cliquables -->
+    <div class="row g-4">
+      
+      <!-- Card 1 -->
+      <div class="col-lg-4 col-md-6">
+        <a href="nouBus.html" class="news-card-link">
+          <article class="news-card">
+            <div class="news-image-wrapper">
+              <div class="news-date">15 JAN</div>
+              <img src="../assets/sectionPhoto4.jpeg" alt="Bus électrique" class="news-img">
+            </div>
+            <div class="news-content">
+              <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Innovation</span>
+              <h4 class="news-title">Nouvelle Flotte Électrique</h4>
+              <p class="news-text">Découvrez nos nouveaux bus électriques avec recharge rapide aux terminus.</p>
+              <span class="news-link">Lire la suite <i class="bi bi-arrow-right-short"></i></span>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 col-md-6">
+        <a href="chomeurs.html" class="news-card-link">
+          <article class="news-card">
+            <div class="news-image-wrapper">
+              <div class="news-date">12 JAN</div>
+              <img src="../assets/img4.jpg" alt="App mobile" class="news-img">
+            </div>
+            <div class="news-content">
+              <span class="badge bg-success bg-opacity-10 text-success mb-2">Ressources Humaines</span>
+              <h4 class="news-title">Recrutement massif au sein de Transco </h4>
+              <p class="news-text">Transco est à la recheche de nouveaux employés.</p>
+              <span class="news-link">Lire la suite <i class="bi bi-arrow-right-short"></i></span>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 col-md-6">
+        <a href="pointPopu.html" class="news-card-link">
+          <article class="news-card">
+            <div class="news-image-wrapper">
+              <div class="news-date">08 JAN</div>
+              <img src="../assets/masta.jpeg" alt="Service nocturne" class="news-img">
+            </div>
+            <div class="news-content">
+              <span class="badge bg-warning bg-opacity-10 text-warning mb-2">Service</span>
+              <h4 class="news-title">Nos points populaies </h4>
+              <p class="news-text">Voici la liste complète des endroits les plus empruntés par nos abonnés avec les bus Transco dans la ville de Kinshasa.</p>
+              <span class="news-link">Lire la suite <i class="bi bi-arrow-right-short"></i></span>
+            </div>
+          </article>
+        </a>
+      </div>
+
+      <!-- Card 4 -->
+      
+
+    </div>
+  </div>
+</section>
+
+<!-- Section Tarifs -->
+<section class="py-5 bg-light">
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-6">Nos Tarifs</h2>
+      <p class="text-secondary">Choisissez ce qui vous convient</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Basic -->
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <h5 class="text-secondary fw-semibold mb-3">Basic</h5>
+            <h3 class="display-5 fw-bold mb-4">500 <small class="fs-6 text-secondary">fc</small></h3>
+            <ul class="list-unstyled mb-4 text-start">
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>1 trajet</li>
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>24h validité</li>
+              <li class="mb-2 text-secondary"><i class="bi bi-x me-2"></i>Non partageable</li>
+            </ul>
+            <a href="connexionpremier.html" class="btn btn-outline-dark w-100 rounded-pill">Choisir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro (featured) -->
+      <div class="col-md-4">
+        <div class="card h-100 border-primary border-2 shadow">
+          <div class="card-header bg-primary text-white text-center py-2">
+            <small class="fw-bold">POPULAIRE</small>
+          </div>
+          <div class="card-body p-4 text-center">
+            <h5 class="text-primary fw-semibold mb-3">Pro</h5>
+            <h3 class="display-5 fw-bold text-primary mb-4">20k <small class="fs-6 text-secondary">fc/mois</small></h3>
+            <ul class="list-unstyled mb-4 text-start">
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Illimité</li>
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>50 jetons</li>
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Partageable</li>
+            </ul>
+            <a href="connexionpremier.html" class="btn btn-primary w-100 rounded-pill">Choisir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student -->
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <h5 class="text-secondary fw-semibold mb-3">Étudiant</h5>
+            <h3 class="display-5 fw-bold mb-4">15k <small class="fs-6 text-secondary">fc/mois</small></h3>
+            <ul class="list-unstyled mb-4 text-start">
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>Illimité</li>
+              <li class="mb-2"><i class="bi bi-check text-success me-2"></i>20 jetons</li>
+              <li class="mb-2 text-secondary"><i class="bi bi-x me-2"></i>Solo</li>
+            </ul>
+            <a href="connexionpremier.html" class="btn btn-outline-dark w-100 rounded-pill">Choisir</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Section Avis Clients -->
+<section class="testimonials-section py-5 bg-light">
+  <div class="container py-5">
+    
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary text-uppercase fw-bold px-3 py-2 rounded-pill mb-3">
+        <i class="bi bi-stars me-2"></i>Témoignages
+      </span>
+      <h2 class="display-5 fw-bold section-title">Ils Nous Font Confiance</h2>
+      <p class="text-muted lead">Ce que nos voyageurs pensent de nous</p>
+    </div>
+
+    <!-- Grille des avis -->
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Avis 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card h-100">
+          <div class="stars mb-3">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <p class="testimonial-text mb-4">
+            "Application fantastique ! Je peux voir exactement quand arrive mon bus et même payer en ligne. Un gain de temps énorme pour mes trajets quotidiens."
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5">
+              ML
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">Marie Lusamba</h6>
+              <small class="text-muted">Étudiante (droit)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avis 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card h-100">
+          <div class="stars mb-3">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <p class="testimonial-text mb-4">
+            "Les bus sont propres, ponctuels et les chauffeurs sont très professionnels. Le meilleur réseau de transport de la région, je recommande vivement !"
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5">
+              BK
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">blaise kabongo</h6>
+              <small class="text-muted">assistant</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avis 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card h-100">
+          <div class="stars mb-3">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <p class="testimonial-text mb-4">
+            "Le service PMR est excellent. Réservation facile et chauffeurs très aidants. Cela change la vie pour mes déplacements médicaux réguliers."
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="avatar bg-warning text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-5">
+              SM
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">Sophie MBO</h6>
+              <small class="text-muted">Professeur</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Section Contact -->
+<section id="contact" class="contact-section py-5 bg-light">
+  <div class="container py-5">
+    
+    <div class="text-center mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary text-uppercase fw-bold px-3 py-2 rounded-pill mb-3">
+        Contact
+      </span>
+      <h2 class="display-5 fw-bold section-title">Une Question ?</h2>
+      <p class="text-muted lead">Notre équipe est disponible 7j/7 pour vous accompagner</p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      
+      <!-- Infos -->
+      <div class="col-lg-5">
+        <div class="contact-info-card h-100">
+          
+          <div class="info-item mb-4">
+            <div class="info-icon bg-primary bg-opacity-10 text-primary">
+              <i class="bi bi-geo-alt-fill fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Siège Social</h5>
+              <p class="text-muted mb-0">7588 Avenue des Transports<br>Ngombe , kinshasa</p>
+            </div>
+          </div>
+
+          <div class="info-item mb-4">
+            <div class="info-icon bg-success bg-opacity-10 text-success">
+              <i class="bi bi-telephone-fill fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Téléphone</h5>
+              <p class="text-muted mb-0">0895642154<br><small class="text-success">Appel gratuit</small></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon bg-info bg-opacity-10 text-info">
+              <i class="bi bi-envelope-fill fs-4"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-1">Email</h5>
+              <p class="text-muted mb-0">contact@TrancoTM.gmail.cd<br>support@Tranco.cd</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="col-lg-7">
+        <div class="contact-form-card h-100">
+          <form>
+            <div class="row g-3">
+              
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-muted">Nom</label>
+                <input type="text" class="form-control form-control-lg border-2" placeholder="Votre nom" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-muted">Email</label>
+                <input type="email" class="form-control form-control-lg border-2" placeholder="votre@email.com" required>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-semibold small text-muted">Sujet</label>
+                <select class="form-select form-select-lg border-2" required>
+                  <option value="" selected disabled>Sélectionnez un sujet</option>
+                  <option value="info">Information tarifs</option>
+                  <option value="reclamation">Réclamation</option>
+                  <option value="partenariat">Partenariat</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-semibold small text-muted">Message</label>
+                <textarea class="form-control border-2" rows="4" placeholder="Votre message..." required></textarea>
+              </div>
+
+              <div class="col-12 mt-4" >
+                <button type="button" class="btn btn-dark btn-lg w-100 rounded-pill fw-bold py-3" onclick="window.location.href='connexionpremier.html'">
+                  Envoyer le message <i class="bi bi-send-fill ms-2"></i>
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Cards Section 
+  <section class="container my-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="sectionPhoto4.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Un nouvel arrivage</h5>
+            <p class="card-text">Toute une collection de bus qui roulent dans toute la ville de Kinshasa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img src="sectionPhoto1.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Voyagez en toute sécurité</h5>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img src="sectionPhoto5.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Confort garanti</h5>
+            <p class="card-text">Profitez d’un transport moderne et adapté à vos besoins.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+ 
+  <!-- Footer -->
+<footer class="footer-section">
+  <div class="container">
+    
+    <div class="row g-5 pb-5 mb-5 border-bottom border-secondary border-opacity-25">
+      
+      <!-- Colonne 1 : Logo & Description -->
+      <div class="col-lg-4 col-md-6">
+        <a href="index.html" class="footer-brand d-inline-flex align-items-center gap-2 mb-4 text-decoration-none">
+           <img src="../assets/sectionPhoto.png" alt="" srcset="" height="50px" width="80px">
+        </a>
+        <p class="text-white-50 mb-4" style="line-height: 1.8;">
+          La mobilité urbaine de demain, dès aujourd'hui. Un service public moderne, écologique et accessible à tous les habitants de Kinshasa.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Liens Rapides -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="text-white fw-bold mb-4">Liens Rapides</h5>
+        <ul class="list-unstyled footer-links">
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Horaires</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Plans</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Tarifs</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Accessibilité</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Services -->
+      <div class="col-lg-2 col-md-6">
+        <h5 class="text-white fw-bold mb-4">Services</h5>
+        <ul class="list-unstyled footer-links">
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Objets trouvés</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Accessibilité PMR</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Vélos en libre</a></li>
+          <li class="mb-3"><a href="#" class="text-white-50 text-decoration-none hover-white">Espace Pro</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 : Newsletter -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="text-white fw-bold mb-4">Newsletter</h5>
+        <p class="text-white-50 small mb-4">Recevez les infos trafic et les offres spéciales directement dans votre boîte mail.</p>
+        
+        <form class="newsletter-form">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control border-0 bg-white bg-opacity-10 text-white placeholder-white-50" 
+                   placeholder="Votre email" required style="height: 48px;">
+            <button class="btn btn-primary px-4 fw-bold" type="submit" style="border-radius: 0 12px 12px 0;">
+              <i class="bi bi-send-fill"></i>
+            </button>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input bg-white bg-opacity-10 border-0" type="checkbox" id="rgpd" required>
+            <label class="form-check-label text-white-50 small" for="rgpd">
+              J'accepte la politique de confidentialité
+            </label>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <p class="mb-0 text-white-50 small">
+          &copy; 2026 TRANSCO TM. Tous droits réservés.
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#" class="text-white-50 small text-decoration-none me-3 hover-white">Mentions légales</a>
+        <a href="#" class="text-white-50 small text-decoration-none me-3 hover-white">CGU</a>
+        <a href="#" class="text-white-50 small text-decoration-none hover-white">Cookies</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+  
+  <script src="index.js"></script>
+  <script src="observer.js"></script>
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="horraire.js"></script>
+  <script src="section.js"></script>
+  
+</body>
+</html>

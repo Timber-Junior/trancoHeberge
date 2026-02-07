@@ -1,0 +1,166 @@
+/* ========================================
+   FOOTER MODERNE
+   ======================================== */
+
+.footer-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 5rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet de fond subtil */
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.footer-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 300px;
+  background: radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Brand */
+.footer-brand span {
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Liens hover */
+.hover-white {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hover-white:hover {
+  color: white !important;
+  transform: translateX(5px);
+}
+
+/* Footer Links */
+.footer-links li {
+  position: relative;
+  padding-left: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-links li::before {
+  content: '›';
+  position: absolute;
+  left: -15px;
+  opacity: 0;
+  color:#0863ec;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.footer-links li:hover::before {
+  opacity: 1;
+  left: -10px;
+}
+
+.footer-links a {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* ========================================
+   RÉSEAUX SOCIAUX
+   ======================================== */
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.social-icon:hover {
+  background-color: #0863ec;
+  border-color: transparent;
+  transform: translateY(-5px) rotate(360deg);
+  color: white;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* ========================================
+   NEWSLETTER FORM
+   ======================================== */
+
+.newsletter-form .form-control {
+  border-radius: 12px 0 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.newsletter-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form .form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.2);
+  color: white;
+}
+
+.newsletter-form .btn-primary {
+  background-color:white ;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.newsletter-form .btn-primary:hover {
+  transform: translateX(2px);
+  box-shadow: -5px 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.form-check-input:checked {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 3rem 0 1.5rem;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .hover-white:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,259 @@
+* {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   LAYOUT PRINCIPAL - 100% Hauteur
+   ======================================== */
+
+.auth-container {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.auth-container > .row {
+    min-height: 100vh;
+}
+
+/* ========================================
+   CÔTÉ IMAGE (Gauche) - 100% Hauteur
+   ======================================== */
+
+.auth-image {
+    background-image: url('../assets/transco.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Prend toute la hauteur */
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Contenu en bas */
+    padding: 1rem;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.4) 50%, rgba(30, 41, 59, 0.1) 100%);
+}
+
+.image-content {
+    position: relative;
+    z-index: 2;
+    max-width: 400px;
+}
+
+/* ========================================
+   CÔTÉ FORMULAIRE (Droite) - 100% Hauteur
+   ======================================== */
+
+.auth-form {
+    min-height: 100vh; /* Prend toute la hauteur */
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
+    background: #ffffff;
+    padding: 2rem;
+    /* Scroll si formulaire trop grand */
+    overflow-y: auto; 
+}
+
+.form-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem 0; /* Espace en haut et bas si scroll */
+}
+
+/* ========================================
+   TOGGLE LOGIN/REGISTER
+   ======================================== */
+
+.auth-toggle {
+    display: flex;
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.toggle-btn.active {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.toggle-btn:not(.active):hover {
+    color: #334155;
+}
+
+/* ========================================
+   INPUTS MODERNES
+   ======================================== */
+
+.form-control, .input-group-text {
+    border-radius: 12px;
+    border-color: #e2e8f0;
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+}
+
+.form-control {
+    border-left: none;
+}
+
+.input-group-text {
+    border-right: none;
+    background: #ffffff;
+}
+
+.form-control:focus {
+    border-color: #e2e8f0;
+    box-shadow: none;
+    border-left: none;
+}
+
+.input-group:focus-within .form-control,
+.input-group:focus-within .input-group-text {
+    border-color: #1769e6;
+}
+
+.input-group:focus-within .input-group-text {
+    color: #1769e6;
+}
+
+.input-group:focus-within .input-group-text i {
+    color: #1769e6;
+}
+
+#registerForm .form-control {
+    border-left: 2px solid #e2e8f0;
+    padding-left: 1rem;
+}
+
+#registerForm .form-control:focus {
+    border-left-color: #1769e6;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ========================================
+   BOUTON PRINCIPAL
+   ======================================== */
+
+.btn-auth {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 41, 59, 0.4);
+    color: white;
+}
+
+.btn-auth:active {
+    transform: translateY(0);
+}
+
+.btn-auth i {
+    transition: transform 0.3s ease;
+}
+
+.btn-auth:hover i {
+    transform: translateX(3px);
+}
+
+/* ========================================
+   CHECKBOX CUSTOM
+   ======================================== */
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 6px;
+    border-color: #d1d5db;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #1e293b;
+    border-color: #1e293b;
+}
+
+.form-check-label {
+    cursor: pointer;
+}
+
+/* ========================================
+   ANIMATION TRANSITION FORMS
+   ======================================== */
+
+.auth-form-content {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 991px) {
+    .auth-form {
+        padding: 2rem 1.5rem;
+        min-height: 100vh;
+    }
+    
+    .form-container {
+        max-width: 100%;
+        padding: 1rem 0;
+    }
+    
+    /* Sur mobile, l'image disparaît et le formulaire prend tout */
+    .auth-container > .row {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .toggle-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-auth {
+        padding: 0.8rem !important;
+    }
+}

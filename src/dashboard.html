@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TRANSCO TM</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashstyle.css">
+</head>
+<body>
+
+    <!-- Navbar Moderne -->
+    <nav class="navbar navbar-expand-lg sticky-top glass-nav">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark" href="index.html">
+                <img src="../assets/sectionPhoto.png" alt="TRANSCO TM" height="40">
+                
+            </a>
+            <a href="index.html" class="btn btn-glass rounded-pill px-4">
+                <i class="bi bi-arrow-left me-2"></i>Retour
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-5 px-4">
+
+        <!-- SECTION 1: STATISTIQUES MODERNES -->
+        <div class="stats-grid mb-5">
+            <div class="stat-card" onclick="animateValue(this)">
+                <div class="stat-icon bg-primary bg-opacity-10 text-primary">
+                    <i class="bi bi-bus-front-fill"></i>
+                </div>
+                <div class="stat-value" data-target="123">0</div>
+                <div class="stat-label">Bus Disponibles</div>
+            </div>
+            
+            <div class="stat-card" onclick="animateValue(this)">
+                <div class="stat-icon bg-success bg-opacity-10 text-success">
+                    <i class="bi bi-signpost-split-fill"></i>
+                </div>
+                <div class="stat-value" data-target="31">0</div>
+                <div class="stat-label">Trajets Disponibles</div>
+            </div>
+            
+            <div class="stat-card" onclick="animateValue(this)">
+                <div class="stat-icon bg-warning bg-opacity-10 text-warning">
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+                <div class="stat-value" data-target="500 ">0</div>
+                <div class="stat-label">Prix Moyen (FC)</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon bg-info bg-opacity-10 text-info">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="stat-value" data-target="183067">0</div>
+                <div class="stat-label">Passagers Aujourd'hui</div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SÉLECTION D'ARRÊT (NOUVEAU) -->
+        <div class="modern-section mb-5">
+            <div class="section-header mb-4">
+                <span class="badge bg-primary bg-opacity-10 text-primary text-uppercase fw-bold px-3 py-2 rounded-pill mb-2">
+                    <i class="bi bi-geo-alt-fill me-1"></i>Arrêts
+                </span>
+                <h3 class="fw-bold mb-0">Sélectionner un Arrêt</h3>
+            </div>
+            
+            <div class="row align-items-end g-3">
+                <div class="col-lg-8 col-md-6">
+                    <label class="form-label fw-semibold text-muted small text-uppercase">Arrêt de départ</label>
+                    <div class="select-wrapper">
+                        <select class="form-select form-select-lg border-2" id="arretSelect">
+                            <option value="" selected disabled>Choisissez votre arrêt...</option>
+                            <option value="gare"> Gare Centrale - Ligne 1, 3, 8</option>
+                            <option value="30juin"> Boulevard 30 Juin - Ligne 1, 2, 5</option>
+                            <option value="nation"> Place de la Nation - Ligne 4, 7</option>
+                            <option value="victoire"> Victoire - Ligne 5, 9, 12</option>
+                            <option value="kintambo"> Kintambo - Ligne 3, 6</option>
+                            <option value="ndjili"> Aéroport Ndjili - Ligne 15 Express</option>
+                            <option value="kasavubu"> Kasavubu - Ligne 8, 11</option>
+                            <option value="bandal"> Bandal - Ligne 2, 9</option>
+                        </select>
+                        <i class="bi bi-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <button class="btn btn-success btn-lg w-100 rounded-pill fw-bold" onclick="voirArret()">
+                        <i class="bi bi-search me-2"></i>Voir les détails
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Info arrêt sélectionné (apparaît dynamiquement) -->
+            <div id="arretInfo" class="arret-info-card mt-4 d-none">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="arret-icon bg-primary text-white rounded-3">
+                        <i class="bi bi-geo-alt-fill fs-3"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="fw-bold mb-2" id="arretNom">Gare Centrale</h5>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <span class="badge bg-primary">Ligne 1</span>
+                            <span class="badge bg-success">Ligne 3</span>
+                            <span class="badge bg-warning text-dark">Ligne 8</span>
+                        </div>
+                        <p class="text-muted mb-0">Prochain bus dans <span class="fw-bold text-success">3 min</span> • Terminus principal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: LISTE DES ROUTES DISPONIBLES (NOUVEAU) -->
+        <div class="modern-section mb-5">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <span class="badge bg-success bg-opacity-10 text-success text-uppercase fw-bold px-3 py-2 rounded-pill mb-2">
+                        <i class="bi bi-map-fill me-1"></i>Routes
+                    </span>
+                    <h3 class="fw-bold mb-0">Routes Disponibles</h3>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary rounded-pill btn-sm" onclick="filterRoutes('all')">Tous</button>
+                    <button class="btn btn-outline-primary rounded-pill btn-sm" onclick="filterRoutes('express')">Express</button>
+                </div>
+            </div>
+            
+            <div class="routes-list" id="routesList">
+                
+                <!-- Route 1 -->
+                <div class="route-item" data-type="express">
+                    <div class="route-badge bg-primary">L1</div>
+                    <div class="route-info flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Centre-Ville ↔ Gare Centrale</h6>
+                                <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i>Fréq: 3-5 min • <i class="bi bi-geo-alt me-1"></i>12 arrêts</p>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success status-badge">En service</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 4px;">
+                            <div class="progress-bar bg-primary" style="width: 75%"></div>
+                        </div>
+                        <small class="text-muted">Occupation: 75%</small>
+                    </div>
+                    <button class="btn btn-light rounded-circle route-btn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Route 2 -->
+                <div class="route-item" data-type="normal">
+                    <div class="route-badge bg-success">L5</div>
+                    <div class="route-info flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Ndjili ↔ Kin Mall</h6>
+                                <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i>Fréq: 10 min • <i class="bi bi-geo-alt me-1"></i>8 arrêts</p>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success status-badge">En service</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 4px;">
+                            <div class="progress-bar bg-success" style="width: 45%"></div>
+                        </div>
+                        <small class="text-muted">Occupation: 45%</small>
+                    </div>
+                    <button class="btn btn-light rounded-circle route-btn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Route 3 -->
+                <div class="route-item" data-type="express">
+                    <div class="route-badge bg-warning text-dark">L15</div>
+                    <div class="route-info flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Express Aéroport</h6>
+                                <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i>Fréq: 15 min • <i class="bi bi-lightning-charge me-1"></i>Direct</p>
+                            </div>
+                            <span class="badge bg-warning bg-opacity-10 text-warning status-badge">Flux dense</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 4px;">
+                            <div class="progress-bar bg-warning" style="width: 90%"></div>
+                        </div>
+                        <small class="text-muted">Occupation: 90%</small>
+                    </div>
+                    <button class="btn btn-light rounded-circle route-btn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Route 4 -->
+                <div class="route-item" data-type="normal">
+                    <div class="route-badge bg-info">L8</div>
+                    <div class="route-info flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Kasavubu ↔ Centre</h6>
+                                <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i>Fréq: 7 min • <i class="bi bi-geo-alt me-1"></i>10 arrêts</p>
+                            </div>
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary status-badge">Planifié</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 4px;">
+                            <div class="progress-bar bg-info" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted">Départ dans 12 min</small>
+                    </div>
+                    <button class="btn btn-light rounded-circle route-btn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Route 5 -->
+                <div class="route-item" data-type="normal">
+                    <div class="route-badge bg-danger">L12</div>
+                    <div class="route-info flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Bandal ↔ Victoire</h6>
+                                <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i>Fréq: 5 min • <i class="bi bi-geo-alt me-1"></i>6 arrêts</p>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success status-badge">En service</span>
+                        </div>
+                        <div class="progress mt-2" style="height: 4px;">
+                            <div class="progress-bar bg-danger" style="width: 60%"></div>
+                        </div>
+                        <small class="text-muted">Occupation: 60%</small>
+                    </div>
+                    <button class="btn btn-light rounded-circle route-btn">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 4: INFO BUS (NOUVEAU) -->
+     
+
+        <!-- SECTION 5: CALCULATEUR (EXISTANT - MODERNISÉ) -->
+        <div class="modern-section calculator-section">
+            <div class="section-header text-center mb-4">
+                <span class="badge bg-dark bg-opacity-10 text-dark text-uppercase fw-bold px-3 py-2 rounded-pill mb-2">
+                    <i class="bi bi-calculator-fill me-1"></i>Estimateur
+                </span>
+                <h3 class="fw-bold mb-0">Calculer votre trajet</h3>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold small text-muted text-uppercase">Départ</label>
+                    <select class="form-select form-select-lg border-2" id="departure">
+                        <option value="" selected disabled>De...</option>
+                        <option value="kinshasa-center">Kinshasa Centre</option>
+                        <option value="ndjili">Ndjili</option>
+                        <option value="kasavubu">Kasavubu</option>
+                        <option value="kin-mall">Kin Mall</option>
+                        <option value="njili-airport">Aéroport Ndjili</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold small text-muted text-uppercase">Destination</label>
+                    <select class="form-select form-select-lg border-2" id="destination">
+                        <option value="" selected disabled>Vers...</option>
+                        <option value="kinshasa-center">Kinshasa Centre</option>
+                        <option value="ndjili">Ndjili</option>
+                        <option value="kasavubu">Kasavubu</option>
+                        <option value="kin-mall">Kin Mall</option>
+                        <option value="njili-airport">Aéroport Ndjili</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold small text-muted text-uppercase">Passagers</label>
+                    <input type="number" class="form-control form-control-lg border-2" id="passengers" min="1" max="50" value="1">
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label fw-semibold small text-muted text-uppercase">Date</label>
+                    <input type="date" class="form-control form-control-lg border-2" id="departureDate">
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-dark btn-lg rounded-pill px-5 py-3 fw-bold" onclick="calculatePrice()">
+                    <i class="bi bi-calculator me-2"></i>Calculer le tarif
+                </button>
+            </div>
+
+            <!-- Price Display -->
+            <div class="price-reveal mt-4" id="priceDisplay" style="display: none;">
+                <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
+                    <div class="text-center">
+                        <div class="text-white-50 small text-uppercase mb-1">Total</div>
+                        <div class="price-amount" id="totalPrice">0 fc</div>
+                    </div>
+                    <div class="vr bg-white opacity-25 d-none d-sm-block" style="height: 60px;"></div>
+                    <div class="text-center">
+                        <div class="text-white-50 small text-uppercase mb-1">Par personne</div>
+                        <div class="price-per" id="pricePerPassenger">0 fc</div>
+                    </div>
+                </div>
+                <button class="btn btn-light mt-4 rounded-pill px-5 fw-bold" onclick="reserver()">
+                    Réserver maintenant <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4 mt-5 border-top">
+        <p class="text-muted mb-0">TRANSCO TM © 2026 - Tous droits réservés</p>
+    </footer>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dashpapa.js"></script>
+</body>
+</html>

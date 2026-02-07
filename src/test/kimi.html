@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetroBus - Transport Urbain Intelligent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00d4aa;
+            --accent-color: #ff6b35;
+            --dark-color: #1a1a2e;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Glass Effect */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Section Headers */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Service Cards */
+        .service-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0,102,204,0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* Route Cards */
+        .route-card {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .route-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+            z-index: 0;
+        }
+
+        .route-card:hover::before {
+            width: 100%;
+        }
+
+        .route-card:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .route-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .route-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        .route-card:hover .route-number {
+            color: white;
+        }
+
+        /* Pricing Cards */
+        .pricing-card {
+            border: none;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid var(--secondary-color);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        /* Stats Counter */
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .stat-card:hover .stat-number {
+            color: white;
+        }
+
+        /* News Cards */
+        .news-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.2);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Interactive Map Section */
+        .map-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 30px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .station-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,102,204,0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(0,102,204,0); }
+        }
+
+        .station-dot:hover {
+            transform: scale(1.5);
+            background: var(--accent-color);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 1rem;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 15px;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,102,204,0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 3rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,102,204,0.4);
+        }
+
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-submit:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px) rotate(360deg);
+            color: white;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Live Status Badge */
+        .live-badge {
+            background: #dc3545;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-bus-alt me-2 text-primary"></i>
+                <span style="color: var(--primary-color)">Metro</span><span style="color: var(--secondary-color)">Bus</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#lignes">Lignes</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#tarifs">Tarifs</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#actualites">Actualités</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#contact">Contact</a></li>
+                </ul>
+                <button class="btn btn-primary ms-3 rounded-pill px-4">
+                    <i class="fas fa-ticket-alt me-2"></i>Acheter
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section id="accueil" class="hero-section d-flex align-items-center">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-white mb-5 mb-lg-0">
+                    <span class="badge bg-white text-primary mb-3 px-3 py-2 rounded-pill">
+                        <span class="live-badge me-2">LIVE</span> Service opérationnel 24/7
+                    </span>
+                    <h1 class="hero-title mb-4">Voyagez Intelligent,<br>Arrivez Relax.</h1>
+                    <p class="lead mb-4 opacity-90">Le réseau de transport le plus moderne de la ville. GPS en temps réel, paiement sans contact, et une expérience utilisateur révolutionnaire.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-primary">
+                            <i class="fas fa-map-marked-alt me-2"></i>Planifier
+                        </button>
+                        <button class="btn btn-outline-light btn-lg rounded-pill px-5">
+                            <i class="fas fa-play-circle me-2"></i>Voir la vidéo
+                        </button>
+                    </div>
+                    <div class="mt-5 d-flex gap-4">
+                        <div class="text-center">
+                            <h3 class="fw-bold">250+</h3>
+                            <small class="opacity-75">Bus électriques</small>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="fw-bold">45</h3>
+                            <small class="opacity-75">Lignes</small>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="fw-bold">2M+</h3>
+                            <small class="opacity-75">Passagers/jour</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="floating-card">
+                        <h4 class="text-white mb-4"><i class="fas fa-search-location me-2"></i>Prochains départs</h4>
+                        <div class="list-group list-group-flush bg-transparent">
+                            <div class="list-group-item bg-transparent text-white border-secondary d-flex justify-content-between align-items-center py-3">
+                                <div>
+                                    <h6 class="mb-0">Ligne 42 - Centre-Ville</h6>
+                                    <small class="opacity-75">Direction Gare Nord</small>
+                                </div>
+                                <span class="badge bg-success rounded-pill">2 min</span>
+                            </div>
+                            <div class="list-group-item bg-transparent text-white border-secondary d-flex justify-content-between align-items-center py-3">
+                                <div>
+                                    <h6 class="mb-0">Ligne 15 - Express</h6>
+                                    <small class="opacity-75">Direction Aéroport</small>
+                                </div>
+                                <span class="badge bg-warning text-dark rounded-pill">5 min</span>
+                            </div>
+                            <div class="list-group-item bg-transparent text-white border-secondary d-flex justify-content-between align-items-center py-3">
+                                <div>
+                                    <h6 class="mb-0">Métro Ligne A</h6>
+                                    <small class="opacity-75">Direction Université</small>
+                                </div>
+                                <span class="badge bg-success rounded-pill">1 min</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-light w-100 mt-3 rounded-pill">Voir tous les horaires</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Services Section -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h6 class="text-primary fw-bold text-uppercase">Nos Services</h6>
+                <h2 class="section-title display-5 fw-bold">Solutions de Transport</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Une gamme complète de services pour répondre à tous vos besoins de mobilité urbaine.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="service-card p-4 text-center h-100">
+                        <div class="service-icon">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Bus Urbains</h4>
+                        <p class="text-muted mb-3">Flotte moderne de bus électriques et hybrides circulant toutes les 5 minutes aux heures de pointe.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">En savoir plus <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="service-card p-4 text-center h-100">
+                        <div class="service-icon">
+                            <i class="fas fa-subway"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Métro Rapide</h4>
+                        <p class="text-muted mb-3">3 lignes de métro desservant 45 stations avec des trains automatiques sans conducteur.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">En savoir plus <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="service-card p-4 text-center h-100">
+                        <div class="service-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Vélos en Libre</h4>
+                        <p class="text-muted mb-3">150 stations de vélos partagés intégrées à notre application pour le dernier kilomètre.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">En savoir plus <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="service-card p-4 text-center h-100">
+                        <div class="service-icon">
+                            <i class="fas fa-taxi"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Transport PMR</h4>
+                        <p class="text-muted mb-3">Service de transport adapté pour personnes à mobilité réduite sur réservation.</p>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">En savoir plus <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Lignes & Itinéraires -->
+    <section id="lignes" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0 fade-in">
+                    <h6 class="text-primary fw-bold text-uppercase">Itinéraires</h6>
+                    <h2 class="display-5 fw-bold mb-4">Nos Lignes Populaires</h2>
+                    <p class="text-muted mb-4">Retrouvez les trajets les plus empruntés avec des fréquences optimisées et des correspondances fluides.</p>
+                    <div class="d-flex gap-2 mb-3">
+                        <span class="badge bg-primary p-2"><i class="fas fa-wifi me-1"></i> WiFi</span>
+                        <span class="badge bg-success p-2"><i class="fas fa-snowflake me-1"></i> Clim</span>
+                        <span class="badge bg-info p-2"><i class="fas fa-usb me-1"></i> USB</span>
+                    </div>
+                    <button class="btn btn-primary rounded-pill px-4">Télécharger la carte</button>
+                </div>
+                
+                <div class="col-lg-8">
+                    <div class="route-card fade-in">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="route-number">42</div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Centre-Ville ↔ Gare Nord</h5>
+                                    <small><i class="fas fa-clock me-1"></i> Fréquence: 3-5 min | <i class="fas fa-route me-1"></i> 12 arrêts</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success">Ponctuel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-card fade-in">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="route-number" style="color: #9b59b6;">15</div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Express Aéroport</h5>
+                                    <small><i class="fas fa-clock me-1"></i> Fréquence: 15 min | <i class="fas fa-route me-1"></i> Direct</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning text-dark">Retard 2min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-card fade-in">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="route-number" style="color: #e74c3c;">A</div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Métro Ligne A - Transversale</h5>
+                                    <small><i class="fas fa-clock me-1"></i> Fréquence: 2 min | <i class="fas fa-route me-1"></i> 18 stations</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success">Ponctuel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-card fade-in">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="route-number" style="color: #f39c12;">B</div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Métro Ligne B - Circuit Est</h5>
+                                    <small><i class="fas fa-clock me-1"></i> Fréquence: 4 min | <i class="fas fa-route me-1"></i> 12 stations</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success">Ponctuel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Carte Interactive -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="section-title display-5 fw-bold">Carte Interactive en Temps Réel</h2>
+                <p class="text-muted">Localisez vos véhicules et stations en temps réel</p>
+            </div>
+            
+            <div class="map-container fade-in" style="min-height: 500px;">
+                <div class="row h-100">
+                    <div class="col-lg-8 position-relative" style="min-height: 400px;">
+                        <div class="bg-white rounded-4 h-100 d-flex align-items-center justify-content-center position-relative overflow-hidden">
+                            <div class="text-center p-5">
+                                <i class="fas fa-map-marked-alt fa-4x text-primary mb-3"></i>
+                                <h4>Carte Temps Réel</h4>
+                                <p class="text-muted">Intégration Google Maps ou Leaflet.js ici</p>
+                            </div>
+                            <!-- Simulated Stations -->
+                            <div class="station-dot" style="top: 30%; left: 20%;" title="Station Centre"></div>
+                            <div class="station-dot" style="top: 50%; left: 50%;" title="Station Nord"></div>
+                            <div class="station-dot" style="top: 70%; left: 30%;" title="Station Est"></div>
+                            <div class="station-dot" style="top: 40%; left: 80%;" title="Station Aéroport"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="bg-white rounded-4 p-4 h-100 shadow-sm">
+                            <h5 class="fw-bold mb-4"><i class="fas fa-info-circle text-primary me-2"></i>Infos Trafic</h5>
+                            <div class="alert alert-success border-0 rounded-3">
+                                <small class="fw-bold"><i class="fas fa-check-circle me-2"></i>Ligne 42 - Normal</small>
+                            </div>
+                            <div class="alert alert-warning border-0 rounded-3">
+                                <small class="fw-bold"><i class="fas fa-exclamation-triangle me-2"></i>Ligne 15 - Travaux</small>
+                                <p class="mb-0 small mt-1">Arrêt Mairie fermé jusqu'à 18h. Utiliser l'arrêt suivant.</p>
+                            </div>
+                            <div class="alert alert-info border-0 rounded-3">
+                                <small class="fw-bold"><i class="fas fa-snowflake me-2"></i>Météo</small>
+                                <p class="mb-0 small mt-1">Conditions normales. Prévoir +5min en soirée.</p>
+                            </div>
+                            <hr>
+                            <h6 class="fw-bold mb-3">Légende</h6>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-primary me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Station active</small>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-success me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Bus à l'approche</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle bg-warning me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Retard prévisible</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Tarifs -->
+    <section id="tarifs" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h6 class="text-primary fw-bold text-uppercase">Tarification</h6>
+                <h2 class="section-title display-5 fw-bold">Choisissez Votre Forfait</h2>
+            </div>
+            
+            <div class="row g-4 align-items-center">
+                <div class="col-md-4 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4 class="fw-bold">Occasionnel</h4>
+                            <p class="mb-0 opacity-75">Pour les voyageurs ponctuels</p>
+                        </div>
+                        <div class="p-4 text-center">
+                            <div class="price text-primary">1.90€</div>
+                            <p class="text-muted">Par trajet</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Validité 1h30</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Correspondances incluses</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tous modes de transport</li>
+                                <li class="mb-2 text-muted"><i class="fas fa-times text-danger me-2"></i>Accès Vélib'</li>
+                            </ul>
+                            <button class="btn btn-outline-primary rounded-pill w-100">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="pricing-card featured">
+                        <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-1 rounded-bl" style="border-radius: 0 20px 0 20px; font-size: 0.8rem; font-weight: bold;">POPULAIRE</div>
+                        <div class="pricing-header">
+                            <h4 class="fw-bold">Abonnement Mensuel</h4>
+                            <p class="mb-0 opacity-75">Pour les usagers réguliers</p>
+                        </div>
+                        <div class="p-4 text-center">
+                            <div class="price">49.90€</div>
+                            <p class="text-muted">Par mois</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Illimité 24/7</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tous modes de transport</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Vélos inclus (30min)</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Invitations mensuelles</li>
+                            </ul>
+                            <button class="btn btn-primary rounded-pill w-100 btn-lg">Souscrire</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="pricing-card">
+                        <div class="pricing-header" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
+                            <h4 class="fw-bold">Étudiant/Senior</h4>
+                            <p class="mb-0 opacity-75">Tarifs réduits</p>
+                        </div>
+                        <div class="p-4 text-center">
+                            <div class="price text-primary">29.90€</div>
+                            <p class="text-muted">Par mois</p>
+                            <ul class="list-unstyled text-start mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Illimité 24/7</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Tous modes de transport</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Justificatif requis</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Offres partenaires</li>
+                            </ul>
+                            <button class="btn btn-outline-primary rounded-pill w-100">Acheter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Stats -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container py-5">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">250+</div>
+                        <p class="mb-0 fw-semibold">Bus Électriques</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">45</div>
+                        <p class="mb-0 fw-semibold">Lignes</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <p class="mb-0 fw-semibold">Ponctualité</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">2M+</div>
+                        <p class="mb-0 fw-semibold">Passagers/Jour</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Actualités -->
+    <section id="actualites" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h6 class="text-primary fw-bold text-uppercase">Actualités</h6>
+                <h2 class="section-title display-5 fw-bold">Dernières Nouvelles</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4 fade-in">
+                    <div class="news-card h-100">
+                        <div class="news-image">
+                            <div class="news-date">15 JAN</div>
+                            <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500&q=80" alt="Bus électrique" onerror="this.style.display='none'">
+                        </div>
+                        <div class="p-4">
+                            <span class="badge bg-primary mb-2">Innovation</span>
+                            <h4 class="fw-bold mb-3">Nouvelle Flotte 100% Électrique</h4>
+                            <p class="text-muted mb-3">Découvrez nos nouveaux bus électriques avec recharge rapide aux terminus.</p>
+                            <a href="#" class="text-primary fw-bold text-decoration-none">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="news-card h-100">
+                        <div class="news-image" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);">
+                            <div class="news-date">12 JAN</div>
+                            <img src="https://images.unsplash.com/photo-1566220387688-1e26de09f31d?w=500&q=80" alt="App mobile" onerror="this.style.display='none'">
+                        </div>
+                        <div class="p-4">
+                            <span class="badge bg-success mb-2">Technologie</span>
+                            <h4 class="fw-bold mb-3">App Mobile 3.0 Disponible</h4>
+                            <p class="text-muted mb-3">Paiement sans contact, tracking GPS en temps réel et alertes personnalisées.</p>
+                            <a href="#" class="text-primary fw-bold text-decoration-none">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="news-card h-100">
+                        <div class="news-image" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="news-date">08 JAN</div>
+                            <img src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?w=500&q=80" alt="Noctilien" onerror="this.style.display='none'">
+                        </div>
+                        <div class="p-4">
+                            <span class="badge bg-warning text-dark mb-2">Service</span>
+                            <h4 class="fw-bold mb-3">Extension Service Nocturne</h4>
+                            <p class="text-muted mb-3">De nouvelles lignes de nuit disponibles tous les week-ends jusqu'à 3h du matin.</p>
+                            <a href="#" class="text-primary fw-bold text-decoration-none">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Témoignages -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h6 class="text-primary fw-bold text-uppercase">Avis Clients</h6>
+                <h2 class="section-title display-5 fw-bold">Ils Nous Font Confiance</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4 fade-in">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Application fantastique ! Je peux voir exactement quand arrive mon bus et même payer en ligne. Un gain de temps énorme."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 50px; height: 50px;">ML</div>
+                            <div class="ms-3">
+                                <h6 class="fw-bold mb-0">Marie L.</h6>
+                                <small class="text-muted">Étudiante</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Les bus sont propres, ponctuels et les chauffeurs sont très professionnels. Le meilleur réseau de transport de la région."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 50px; height: 50px;">PB</div>
+                            <div class="ms-3">
+                                <h6 class="fw-bold mb-0">Pierre B.</h6>
+                                <small class="text-muted">Comptable</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 fade-in">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Le service PMR est excellent. Réservation facile et chauffeurs très aidants. Je recommande vivement."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 50px; height: 50px;">SM</div>
+                            <div class="ms-3">
+                                <h6 class="fw-bold mb-0">Sophie M.</h6>
+                                <small class="text-muted">Retraitée</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-5 fade-in">
+                    <h6 class="text-primary fw-bold text-uppercase">Contact</h6>
+                    <h2 class="display-5 fw-bold mb-4">Une Question ?</h2>
+                    <p class="text-muted mb-5">Notre équipe est disponible 7j/7 pour vous accompagner dans vos déplacements.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="fas fa-map-marker-alt fa-lg"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h5 class="fw-bold">Siège Social</h5>
+                            <p class="text-muted mb-0">123 Avenue des Transports<br>75001 Paris, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="fas fa-phone fa-lg"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h5 class="fw-bold">Téléphone</h5>
+                            <p class="text-muted mb-0">0 800 123 456<br><small>(Appel gratuit)</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="fas fa-envelope fa-lg"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h5 class="fw-bold">Email</h5>
+                            <p class="text-muted mb-0">contact@metrobus.fr<br>support@metrobus.fr</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7 fade-in">
+                    <form class="contact-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Nom</label>
+                                <input type="text" class="form-control" placeholder="Votre nom">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email</label>
+                                <input type="email" class="form-control" placeholder="votre@email.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Sujet</label>
+                                <select class="form-control">
+                                    <option>Information tarifs</option>
+                                    <option>Réclamation</option>
+                                    <option>Partenariat</option>
+                                    <option>Autre</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="Votre message..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-submit w-100">
+                                    <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <h4 class="fw-bold mb-4">
+                        <span style="color: var(--primary-color)">Metro</span><span style="color: var(--secondary-color)">Bus</span>
+                    </h4>
+                    <p class="text-white-50 mb-4">La mobilité urbainé de demain, dès aujourd'hui. Un service public moderne, écologique et accessible à tous.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-3">Liens Rapides</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Horaires</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Plans</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Tarifs</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Accessibilité</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="fw-bold mb-3">Services</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Objets trouvés</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Accessibilité PMR</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Vélos</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-white">Pro</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="fw-bold mb-3">Newsletter</h5>
+                    <p class="text-white-50 small">Recevez les infos trafic et offres spéciales.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control rounded-pill-start" placeholder="Votre email" style="border-radius: 50px 0 0 50px;">
+                        <button class="btn btn-primary rounded-pill-end" style="border-radius: 0 50px 50px 0;">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rgpd">
+                        <label class="form-check-label text-white-50 small" for="rgpd">
+                            J'accepte la politique de confidentialité
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-white-50 small">&copy; 2024 MetroBus. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 small text-decoration-none me-3">Mentions légales</a>
+                    <a href="#" class="text-white-50 small text-decoration-none me-3">CGU</a>
+                    <a href="#" class="text-white-50 small text-decoration-none">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission animation
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.btn-submit');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Envoi...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check me-2"></i>Message envoyé !';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-primary');
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+
+        // Dynamic route card interaction
+        document.querySelectorAll('.route-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Counter animation for stats
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (obj.innerHTML.includes('%') ? '%' : '+');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = parseInt(stat.innerHTML);
+                        animateValue(stat, 0, finalValue, 2000);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.bg-primary');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

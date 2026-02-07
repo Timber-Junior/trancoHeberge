@@ -1,0 +1,262 @@
+/* ========================================
+   SECTION CARTE FULL SPLIT
+   ======================================== */
+
+.kinshasa-map-full {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.kinshasa-map-full > .row {
+  min-height: 100vh;
+}
+
+/* ========================================
+   CÔTÉ CARTE (Gauche - Full)
+   ======================================== */
+
+.map-col {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.map-wrapper {
+  overflow: hidden;
+}
+
+.map-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Markers sur la carte */
+.stop-marker {
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.stop-marker:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+  z-index: 20;
+}
+
+.marker-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  opacity: 0;
+  animation: markerPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: 1;
+}
+
+@keyframes markerPulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+.marker-label {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.stop-marker:hover .marker-label {
+  opacity: 1;
+  top: -45px;
+}
+
+/* Bus live */
+.live-bus {
+  position: absolute;
+  animation: busMove 20s linear infinite;
+  z-index: 15;
+}
+
+@keyframes busMove {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30px, -10px); }
+  50% { transform: translate(60px, 0); }
+  75% { transform: translate(30px, 10px); }
+  100% { transform: translate(0, 0); }
+}
+
+.bus-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 2px solid currentColor;
+  animation: busBounce 2s ease-in-out infinite;
+}
+
+@keyframes busBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Header carte */
+.map-header {
+  z-index: 100;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   CÔTÉ LISTE (Droite - Full)
+   ======================================== */
+
+.stops-col {
+  height: 100vh;
+  background: white;
+  border-left: 1px solid #e5e7eb;
+}
+
+.stops-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stops-header {
+  flex-shrink: 0;
+  background: white;
+  z-index: 10;
+}
+
+.stops-list {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.stops-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.stops-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.stops-list::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+}
+
+.stops-footer {
+  flex-shrink: 0;
+  background: white;
+  z-index: 10;
+}
+
+/* Items */
+.stop-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stop-card-inner {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent !important;
+}
+
+.stop-item:hover .stop-card-inner {
+  transform: translateX(10px);
+  border-color: #3b82f6 !important;
+  background: white !important;
+  box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.15) !important;
+}
+
+.stop-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.stop-item:hover .stop-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.stop-item:hover .bi-chevron-right {
+  transform: translateX(5px);
+  color: #3b82f6;
+}
+
+.bi-chevron-right {
+  transition: all 0.3s ease;
+}
+
+/* Active state */
+.stop-item.active .stop-card-inner {
+  border-color: #3b82f6 !important;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%) !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 991px) {
+  .map-col {
+    height: 50vh;
+    position: relative;
+    order: 2;
+  }
+  
+  .stops-col {
+    height: auto;
+    min-height: 50vh;
+    order: 1;
+    border-left: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .kinshasa-map-full > .row {
+    min-height: auto;
+  }
+  
+  .stops-list {
+    max-height: 500px;
+  }
+}

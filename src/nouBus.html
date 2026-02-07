@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Flotte Électrique - TRANSCO TM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="article.css">
+</head>
+<body>
+    <style>
+        /* ========================================
+   NAVBAR ARTICLE (Simplifiée)
+   ======================================== */
+
+.glass-nav {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    height: 70px;
+    transition: all 0.3s ease;
+}
+
+.brand-text {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-link {
+    color: #475569 !important;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+    color: #0d6efd !important;
+}
+
+/* ========================================
+   ARTICLE HEADER (Hero Image)
+   ======================================== */
+
+.article-header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.article-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+}
+
+.article-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
+    z-index: 1;
+}
+
+.article-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+.article-meta {
+    font-size: 0.95rem;
+}
+
+/* ========================================
+   CONTENU ARTICLE
+   ======================================== */
+
+.article-content {
+    background: white;
+    position: relative;
+    z-index: 2;
+    margin-top: -3rem;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.article-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #374151;
+    margin-bottom: 1.5rem;
+}
+
+/* Quote */
+.article-quote {
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    border-left: 4px solid #6366f1;
+    padding: 2rem;
+    border-radius: 0 16px 16px 0;
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: #6366f1;
+    opacity: 0.3;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.article-quote p {
+    position: relative;
+    z-index: 1;
+    padding-left: 1rem;
+}
+
+/* Liste */
+.article-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.article-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.article-list li:last-child {
+    border-bottom: none;
+}
+
+/* Gallery */
+.article-gallery img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.article-gallery img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Info Box */
+.info-box {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%) !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .article-header {
+        padding: 6rem 0 4rem;
+    }
+    
+    .article-header h1 {
+        font-size: 2rem;
+    }
+    
+    .article-text {
+        font-size: 1rem;
+    }
+    
+    .article-quote {
+        padding: 1.5rem;
+    }
+}
+    </style>
+
+<!-- Navbar Simplifiée -->
+<nav class="navbar navbar-expand-lg sticky-top glass-nav">
+    <div class="container-fluid px-4">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark" href="index.html">
+            <img src="../assets/sectionPhoto.png" alt="Logo" height="40">
+            <span class="d-none d-sm-inline fs-4 brand-text"></span>
+        </a>
+
+        <!-- Seul lien Accueil -->
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link fw-medium px-3 py-2 rounded-3 d-flex align-items-center gap-2" href="index.html">
+                <i class="bi bi-arrow-left-short"></i> Retour à l'accueil
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Article Header -->
+<header class="article-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill fw-bold">
+                    <i class="bi bi-lightning-charge me-2"></i>Innovation
+                </span>
+                <h1 class="display-4 fw-bold text-white mb-4">Nouvelle Flotte 100% Électrique : La Révolution Verte de TRANSCO</h1>
+                
+                <div class="article-meta d-flex flex-wrap gap-4 text-white-50 align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-calendar3"></i>
+                        <span>15 Janvier 2026</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Par l'équipe TRANSCO</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-clock"></i>
+                        <span>5 min de lecture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article-overlay"></div>
+</header>
+
+<!-- Contenu Article -->
+<main class="article-content py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <!-- Lead -->
+                <p class="lead fs-4 text-dark fw-medium mb-5 border-start border-4 border-primary ps-4">
+                    Dans le cadre de notre engagement pour une mobilité durable, TRANSCO TM inaugure aujourd'hui 25 nouveaux bus 100% électriques, représentant un investissement de 15 millions de dollars.
+                </p>
+
+                <!-- Paragraphe 1 -->
+                <p class="article-text">
+                    Ce matin, au dépôt central de Kinshasa, nous avons dévoilé notre nouvelle flotte de bus électriques de dernière génération. Ces véhicules zéro émission marquent un tournant majeur dans notre stratégie de transition énergétique et s'inscrivent dans la vision du gouvernement provincial d'une ville plus verte et respirable.
+                </p>
+
+                <p class="article-text">
+                    Les nouveaux modèles, fabriqués par BYD et Mercedes-Benz, offrent une autonomie record de 350 kilomètres avec une seule charge. Grâce à la nouvelle infrastructure de recharge rapide installée aux terminus principaux, les bus peuvent être rechargés à 80% en seulement 45 minutes.
+                </p>
+
+                <!-- Quote -->
+                <blockquote class="article-quote my-5">
+                    <i class="bi bi-quote quote-icon"></i>
+                    <p class="mb-3 fs-5 fst-italic">
+                        "Cette flotte représente bien plus que de simples véhicules. C'est un engagement fort envers nos concitoyens pour un avenir plus propre et des transports publics de classe mondiale."
+                    </p>
+                    <footer class="blockquote-footer mt-2">
+                        Jean-Pierre M., Directeur Général de TRANSCO TM
+                    </footer>
+                </blockquote>
+
+                <!-- Sous-titre -->
+                <h2 class="h3 fw-bold mb-4 mt-5">Des bus plus confortables et connectés</h2>
+                
+                <p class="article-text">
+                    Outre leur propulsion électrique, ces bus intègrent des technologies de pointe pour le confort des passagers :
+                </p>
+
+                <ul class="article-list mb-5">
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Climatisation intelligente par zone</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Ports USB à chaque siège</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>WiFi haut débit gratuit</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Système d'information voyageurs en temps réel</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Accès PMR facilité avec plancher bas</li>
+                </ul>
+
+                <!-- Gallery -->
+                <div class="article-gallery row g-3 mb-5">
+                    <div class="col-md-6">
+                        <img src="../assets/sectionPhoto2.jpg" alt="Intérieur bus" class="img-fluid rounded-4 shadow-sm">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="../assets/sectionPhoto3jpg.jpg" alt="Bus extérieur" class="img-fluid rounded-4 shadow-sm">
+                    </div>
+                    <div class="col-12">
+                        <img src="../assets/sectionPhoto4.jpeg" alt="Station recharge" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 400px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <p class="article-text">
+                    Les premiers véhicules entreront en service dès la semaine prochaine sur la ligne L1 (Ngaba - centre ville). L'ensemble de la flotte sera progressivement déployé sur les axes les plus fréquentés d'ici la fin du premier trimestre 2026.
+                </p>
+
+                <!-- Info Box -->
+                <div class="info-box bg-light rounded-4 p-4 my-5 border-start border-4 border-success">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-info-circle-fill text-success me-2"></i>Chiffres clés</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4 text-center">
+                            <div class="fs-2 fw-bold text-success">25</div>
+                            <div class="small text-muted">Nouveaux bus</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="fs-2 fw-bold text-success">350 km</div>
+                            <div class="small text-muted">Autonomie</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="fs-2 fw-bold text-success">45 min</div>
+                            <div class="small text-muted">Recharge rapide</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="article-text">
+                    Cette acquisition s'inscrit dans notre plan stratégique 2025-2030 qui vise à électrifier 60% de notre capitale  d'ici 2028. Des études sont déjà en cours pour l'installation de panneaux solaires sur les toits des dépôts afin d'alimenter ces véhicules avec de l'énergie 100% renouvelable.
+                </p>
+
+                <!-- Tags -->
+                <div class="mt-5 pt-4 border-top">
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span class="text-muted fw-medium">Tags :</span>
+                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">Écologie</span>
+                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">Transports</span>
+                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">Innovation</span>
+                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">Kinshasa</span>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center mt-5 pt-5">
+                    <h4 class="fw-bold mb-4">Découvrez la nouvelle flotte en action</h4>
+                    <a href="index.html#tarifs" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold">
+                        Voir les trajets disponibles <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer Article -->
+<footer class="article-footer bg-light py-4 mt-5 border-top">
+    <div class="container text-center">
+        <p class="mb-0 text-muted">
+            <i class="bi bi-arrow-left me-2"></i>
+            <a href="index.html" class="text-decoration-none fw-medium">Retour à l'accueil</a>
+        </p>
+    </div>
+</footer>
+
+<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

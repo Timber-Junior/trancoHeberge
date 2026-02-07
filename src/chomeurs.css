@@ -1,0 +1,130 @@
+/* ========================================
+   SECTION RECRUTEMENT
+   ======================================== */
+
+.recrutement-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 5rem 0;
+}
+
+/* Formulaire */
+.form-recrutement {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-recrutement::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Inputs */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+/* File input custom */
+input[type="file"].form-control {
+  padding: 0.5rem 1rem;
+}
+
+input[type="file"].form-control::file-selector-button {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  color: #475569;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+input[type="file"].form-control::file-selector-button:hover {
+  background: #e2e8f0;
+}
+
+/* Titres de section */
+.form-recrutement h5 {
+  color: #1e293b;
+  position: relative;
+}
+
+.form-recrutement h5::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 2px;
+}
+
+/* Checkboxes custom */
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 6px;
+  border-color: #d1d5db;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.form-check-label {
+  cursor: pointer;
+  color: #4b5563;
+}
+
+/* Boutons */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.btn-outline-secondary {
+  border-width: 2px;
+  font-weight: 500;
+}
+
+.btn-outline-secondary:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-recrutement {
+    padding: 1.5rem !important;
+  }
+  
+  .form-recrutement h5 {
+    font-size: 1rem;
+  }
+}
